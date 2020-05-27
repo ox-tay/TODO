@@ -11,14 +11,6 @@ class MainViewModel(
     private var repository: TodoRepo
 ) : ViewModel() {
 
-//    private val todos = MutableLiveData<List<TodoModel>>()
-//
-//    fun todos(): LiveData<List<TodoModel>> = todos
-//
-//    fun getTodos() {
-//        todos.value = repository.getAllTodo().value
-//    }
-
     fun getAll() = repository.getAllTodo()
 
     fun insert(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
@@ -30,7 +22,11 @@ class MainViewModel(
     }
 
     fun done(id: Int, done: Int) = CoroutineScope(Dispatchers.Main).launch {
-        repository.done(id,done)
+        repository.done(id, done)
+    }
+
+    fun deleteAll() = CoroutineScope(Dispatchers.Main).launch {
+        repository.deleteAll()
     }
 
 

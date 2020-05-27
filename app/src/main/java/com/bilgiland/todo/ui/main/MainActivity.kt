@@ -39,6 +39,11 @@ class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
                 }
             }).show()
         }
+
+        img_delete_all.setOnClickListener {
+            viewModel.deleteAll()
+        }
+
     }
 
 
