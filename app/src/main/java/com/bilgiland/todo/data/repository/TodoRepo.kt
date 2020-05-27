@@ -11,9 +11,11 @@ class TodoRepo(private val db: TodoDb) {
 
     suspend fun insert(todoModel: TodoModel) = db.todoDao().insert(todoModel)
 
-    suspend fun done(id: Int, done: Int)=db.todoDao().update(id,done)
+    suspend fun done(id: Int, done: Int) = db.todoDao().update(id, done)
 
     fun getAllTodo() = db.todoDao().getAllTodo()
+
+    fun getSearchTodo(name: String) = db.todoDao().getSearch(name)
 
 
 }

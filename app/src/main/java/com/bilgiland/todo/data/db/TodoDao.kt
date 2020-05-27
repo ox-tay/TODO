@@ -13,6 +13,9 @@ interface TodoDao {
     @Query("select * from TodoModel")
     fun getAllTodo(): LiveData<List<TodoModel>>
 
+    @Query("select * from TodoModel where name like :name")
+    fun getSearch(name: String): LiveData<List<TodoModel>>
+
     @Delete
     suspend fun deleteTodo(todo: TodoModel)
 

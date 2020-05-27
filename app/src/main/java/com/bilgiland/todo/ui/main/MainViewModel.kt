@@ -1,5 +1,8 @@
 package com.bilgiland.todo.ui.main
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.bilgiland.todo.data.model.TodoModel
 import com.bilgiland.todo.data.repository.TodoRepo
@@ -11,23 +14,37 @@ class MainViewModel(
     private var repository: TodoRepo
 ) : ViewModel() {
 
-    fun getAll() = repository.getAllTodo()
+    private val _searchStringLiveData = MutableLiveData<String>()
 
-    fun insert(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
-        repository.insert(todoModel)
+    init {
+        _searchStringLiveData.value = ""
     }
 
-    fun delete(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
-        repository.deleteTodo(todoModel)
+    fun getAll(): LiveData<List<TodoModel>> = Transformations.switchMap(_searchStringLiveData) {
+        if(_searchStringLiveData.value!="")
+            repository.getSearchTodo(it)
+        else
+            repository.getAllTodo()
+
     }
 
-    fun done(id: Int, done: Int) = CoroutineScope(Dispatchers.Main).launch {
-        repository.done(id, done)
+        fun insert(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
+            repository.insert(todoModel)
+        }
+
+        fun delete(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
+            repository.deleteTodo(todoModel)
+        }
+
+        fun done(id: Int, done: Int) = CoroutineScope(Dispatchers.Main).launch {
+            repository.done(id, done)
+        }
+
+        fun deleteAll() = CoroutineScope(Dispatchers.Main).launch {
+            repository.deleteAll()
+        }
+
+        fun searchTextChanged(name: String) {
+            _searchStringLiveData.value = name
+        }
     }
-
-    fun deleteAll() = CoroutineScope(Dispatchers.Main).launch {
-        repository.deleteAll()
-    }
-
-
-}

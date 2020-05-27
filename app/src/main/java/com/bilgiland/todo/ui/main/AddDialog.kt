@@ -2,6 +2,7 @@ package com.bilgiland.todo.ui.main
 
 import android.content.Context
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatDialog
 import com.bilgiland.todo.R
 import com.bilgiland.todo.utility.toast
@@ -14,19 +15,34 @@ class AddDialog(context: Context, private var addDialog: AddTodoListener) :
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_todo)
 
-        btn_add.setOnClickListener {
-
-            val todo: String = edt_todo.text.toString()
-
-            if (todo.isNotEmpty()) {
-                addDialog.onAddButtonClicked(todo)
-                dismiss()
+        edt_todo.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                addClicked()
+                true
             } else {
-                context.toast(context.getString(R.string.enter_name))
+                false
             }
+        }
+
+        btn_add.setOnClickListener {
+            addClicked()
         }
 
         btn_cancel.setOnClickListener { dismiss() }
 
+    }
+
+    /**
+     * add clicked
+     */
+    private fun addClicked() {
+        val todo: String = edt_todo.text.toString()
+
+        if (todo.isNotEmpty()) {
+            addDialog.onAddButtonClicked(todo)
+            dismiss()
+        } else {
+            context.toast(context.getString(R.string.enter_name))
+        }
     }
 }

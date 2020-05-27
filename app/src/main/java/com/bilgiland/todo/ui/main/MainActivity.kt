@@ -2,6 +2,7 @@ package com.bilgiland.todo.ui.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,7 +33,9 @@ class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
     }
 
     private fun manageClick() {
+        // add new task
         fab_add.setOnClickListener {
+            clearFocusFromSearch()
             AddDialog(this, object : AddTodoListener {
                 override fun onAddButtonClicked(name: String) {
                     viewModel.insert(TodoModel(name, 0))
@@ -40,10 +43,17 @@ class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
             }).show()
         }
 
+        //delete all tasks
         img_delete_all.setOnClickListener {
             viewModel.deleteAll()
         }
+    }
 
+    // clear focus from search bar
+    // add focus to dummy view
+    private fun clearFocusFromSearch() {
+        edt_search.clearFocus()
+        dummy_view.requestFocus()
     }
 
 
@@ -54,10 +64,14 @@ class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
             adapter = recAdapter
         }
 
-
         viewModel.getAll().observe(this, Observer {
             recAdapter.add(ArrayList(it))
         })
+
+        edt_search.addTextChangedListener {
+            viewModel.searchTextChanged(it.toString())
+        }
+
     }
 
     override fun onDeleteClicked(todoModel: TodoModel) {
@@ -67,6 +81,4 @@ class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
     override fun onDoneClicked(id: Int, done: Int) {
         viewModel.done(id, done)
     }
-
-
 }
