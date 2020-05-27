@@ -1,4 +1,4 @@
-package com.bilgiland.todo.ui
+package com.bilgiland.todo.ui.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

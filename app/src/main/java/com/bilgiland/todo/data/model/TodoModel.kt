@@ -1,11 +1,15 @@
 package com.bilgiland.todo.data.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
 data class TodoModel(
+    var name: String,
+    @ColumnInfo(defaultValue = "0")
+    var done: Int
+) {
     @PrimaryKey(autoGenerate = true)
-    var id: Int,
-    var name: String
-)
+    var id: Int? = null
+}

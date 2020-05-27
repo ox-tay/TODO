@@ -1,4 +1,4 @@
-package com.bilgiland.todo.ui
+package com.bilgiland.todo.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import com.bilgiland.todo.R
 import com.bilgiland.todo.data.model.TodoModel
 import com.bilgiland.todo.databinding.TodoItemBinding
 
-class TodoAdapter :
+class TodoAdapter(private val adapterListener: AdapterListener) :
     RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
 
     private var list: ArrayList<TodoModel> = ArrayList()
@@ -37,6 +37,19 @@ class TodoAdapter :
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         holder.todoItemBinding.model = list[position]
+        holder.todoItemBinding.checkBox.setOnClickListener {
+            var done = 0
+
+            if (holder.todoItemBinding.checkBox.isChecked) {
+                done = 1
+            }
+
+            adapterListener.onDoneClicked(list[position].id!!, done)
+
+        }
+        holder.todoItemBinding.imgDelete.setOnClickListener {
+            adapterListener.onDeleteClicked(list[position])
+        }
     }
 
 }

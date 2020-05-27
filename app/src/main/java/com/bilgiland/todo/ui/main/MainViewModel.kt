@@ -1,7 +1,5 @@
-package com.bilgiland.todo.ui
+package com.bilgiland.todo.ui.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bilgiland.todo.data.model.TodoModel
 import com.bilgiland.todo.data.repository.TodoRepo
@@ -21,10 +19,18 @@ class MainViewModel(
 //        todos.value = repository.getAllTodo().value
 //    }
 
-    fun getAll()=repository.getAllTodo()
+    fun getAll() = repository.getAllTodo()
 
     fun insert(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
         repository.insert(todoModel)
+    }
+
+    fun delete(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
+        repository.deleteTodo(todoModel)
+    }
+
+    fun done(id: Int, done: Int) = CoroutineScope(Dispatchers.Main).launch {
+        repository.done(id,done)
     }
 
 

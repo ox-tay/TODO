@@ -19,4 +19,7 @@ interface TodoDao {
     @Query("delete from TodoModel")
     suspend fun deleteAll()
 
+    @Query("update todomodel SET done=:done where id=:id")
+    suspend fun update(id: Int, done: Int)
+
 }
