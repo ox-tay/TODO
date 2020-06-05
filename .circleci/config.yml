@@ -6,7 +6,6 @@ jobs:
   build:
     docker:
     - image: circleci/android:api-29
-        environment:
     steps:
       - checkout
       - restore_cache:
