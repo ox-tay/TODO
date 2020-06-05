@@ -5,18 +5,12 @@ orbs:
 jobs:
   build:
     docker:
-    - image: circleci/android:api-29
+      - image: circleci/android:api-29
     steps:
       - checkout
-      -  restore_cache:
-            key: jars-{{ checksum "build.gradle" }}-{{ checksum  "Todo/build.gradle" }}
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
-      - save_cache:
-        paths:
-          - ~/.gradle
-        key: jars-{{ checksum "build.gradle" }}-{{ checksum  "Todo/build.gradle" }}
       - run:
           name: Build
           command: ./gradlew assemble build lint test
