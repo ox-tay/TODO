@@ -3,19 +3,25 @@ package com.bilgiland.todo.ui.main
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bilgiland.todo.R
 import com.bilgiland.todo.data.model.TodoModel
 import com.bilgiland.todo.databinding.TodoItemBinding
 
 class TodoAdapter(private val adapterListener: AdapterListener) :
-    RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
+    ListAdapter<TodoModel, TodoAdapter.TodoViewHolder>(TodoCallBack()) {
 
-    private var list: ArrayList<TodoModel> = ArrayList()
+    class TodoCallBack : DiffUtil.ItemCallback<TodoModel>() {
+        override fun areItemsTheSame(oldItem: TodoModel, newItem: TodoModel): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-    fun add(list: ArrayList<TodoModel>) {
-        this.list = list
-        notifyDataSetChanged()
+        override fun areContentsTheSame(oldItem: TodoModel, newItem: TodoModel): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
     inner class TodoViewHolder(val todoItemBinding: TodoItemBinding) :
@@ -33,10 +39,9 @@ class TodoAdapter(private val adapterListener: AdapterListener) :
         )
     }
 
-    override fun getItemCount(): Int = list.size
-
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        holder.todoItemBinding.model = list[position]
+        holder.todoItemBinding.model = getItem(position)
+
         holder.todoItemBinding.checkBox.setOnClickListener {
             var done = 0
 
@@ -44,12 +49,13 @@ class TodoAdapter(private val adapterListener: AdapterListener) :
                 done = 1
             }
 
-            adapterListener.onDoneClicked(list[position].id!!, done)
-
+            adapterListener.onDoneClicked(getItem(holder.layoutPosition).id!!, done)
         }
         holder.todoItemBinding.imgDelete.setOnClickListener {
-            adapterListener.onDeleteClicked(list[position])
+            adapterListener.onDeleteClicked(getItem(holder.layoutPosition))
         }
     }
+
+
 
 }

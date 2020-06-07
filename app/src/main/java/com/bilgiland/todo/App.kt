@@ -3,10 +3,7 @@ package com.bilgiland.todo
 import android.app.Application
 import com.bilgiland.todo.data.db.TodoDb
 import com.bilgiland.todo.data.repository.TodoRepo
-import com.bilgiland.todo.ui.main.AdapterListener
-import com.bilgiland.todo.ui.main.MainViewModel
-import com.bilgiland.todo.ui.main.MainViewModelFactory
-import com.bilgiland.todo.ui.main.TodoAdapter
+import com.bilgiland.todo.ui.main.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule
@@ -22,11 +19,7 @@ class App : Application(), KodeinAware {
         bind() from singleton { TodoDb(instance()) }
         bind() from singleton { TodoRepo(instance()) }
         bind() from singleton { MainViewModel(instance()) }
-        bind() from provider {
-            MainViewModelFactory(
-                instance()
-            )
-        }
+        bind() from provider { MainViewModelFactory(instance()) }
         bind() from provider { TodoAdapter(context as AdapterListener) }
     }
 }

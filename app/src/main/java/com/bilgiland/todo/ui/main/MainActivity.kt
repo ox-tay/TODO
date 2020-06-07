@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
         }
 
         viewModel.getAll().observe(this, Observer {
-            recAdapter.add(ArrayList(it))
+            recAdapter.submitList(ArrayList(it))
         })
 
         edt_search.addTextChangedListener {
