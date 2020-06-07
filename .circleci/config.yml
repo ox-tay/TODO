@@ -8,9 +8,9 @@ jobs:
       - image: circleci/android:api-29
     steps:
       - checkout
-      - - run:
-            name: Chmod permissions
-            command: sudo chmod +x ./gradlew
+      - run:
+          name: Chmod permissions
+          command: sudo chmod +x ./gradlew
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
