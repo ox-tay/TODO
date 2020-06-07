@@ -13,13 +13,14 @@ import androidx.test.espresso.matcher.BoundedMatcher
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import com.bilgiland.todo.utility.RecycleViewTestHelper.getCountFromRecyclerView
 import com.bilgiland.todo.ui.main.MainActivity
+import com.bilgiland.todo.utility.RecycleViewTestHelper.getCountFromRecyclerView
 import com.bilgiland.todo.utility.ToastMatcher
 import com.bilgiland.todo.utility.getRandomString
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Description
 import org.hamcrest.Matcher
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -71,6 +72,14 @@ class AddTodoTest {
         onView(withId(R.id.btn_cancel)).perform(click())
         onView(withId(R.id.btn_cancel)).check(doesNotExist())
     }
+
+
+    @Test
+    fun deleteAll() {
+        onView(withId(R.id.img_delete_all)).perform(click())
+        Assert.assertEquals(0, getCountFromRecyclerView(R.id.rec_main))
+    }
+
 
     private fun checkShowToast(s: String) {
         onView(withText(s)).inRoot(ToastMatcher()).check(matches(isDisplayed()))
