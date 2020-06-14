@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.appcompat.app.AppCompatDialog
 import com.bilgiland.todo.R
-import com.bilgiland.todo.utility.toast
 import kotlinx.android.synthetic.main.add_todo.*
 
 
@@ -42,7 +41,7 @@ class AddDialog(context: Context, private var addDialog: AddTodoListener) :
             addDialog.onAddButtonClicked(todo)
             dismiss()
         } else {
-            context.toast(context.getString(R.string.enter_name))
+            textField_todo.error = context.getString(R.string.enter_name)
         }
     }
 }

@@ -18,7 +18,8 @@
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toTopOf="@id/btn_add"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:errorEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_todo"

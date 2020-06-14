@@ -15,6 +15,7 @@ import org.kodein.di.generic.instance
 
 class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
 
+    //use kodein for DI
     override val kodein by kodein()
 
     private val factory: MainViewModelFactory by instance<MainViewModelFactory>()
@@ -32,6 +33,9 @@ class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
         manageClick()
     }
 
+    /**
+     * manage click on view
+     */
     private fun manageClick() {
         // add new task
         fab_add.setOnClickListener {
@@ -74,10 +78,16 @@ class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
 
     }
 
+    /**
+     * job deleted
+     */
     override fun onDeleteClicked(todoModel: TodoModel) {
         viewModel.delete(todoModel)
     }
 
+    /**
+     * job done
+     */
     override fun onDoneClicked(id: Int, done: Int) {
         viewModel.done(id, done)
     }

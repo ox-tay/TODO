@@ -83,8 +83,7 @@ dependencies {
 
     //RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.1.0"
-
-
+    
     //Kodein Dependency Injection
     implementation "org.kodein.di:kodein-di-generic-jvm:6.5.5"
     implementation "org.kodein.di:kodein-di-framework-android-x:6.2.1"
