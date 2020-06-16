@@ -6,4 +6,5 @@
     <string name="search">search</string>
     <string name="channel_name">todoChannel</string>
     <string name="channel_description">Todo Notification</string>
+    <string name="cancel">cancel</string>
 </resources>

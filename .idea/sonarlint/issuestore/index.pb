@@ -19,5 +19,3 @@ u
 Eapp/src/main/java/com/bilgiland/todo/utility/NotificationPresenter.kt,4\7\47b7e109421200bcba44e5503a72fce5d92f6741
 U
 %app/src/main/res/layout/todo_item.xml,8\1\81f3b05c8c3583c5ef00ac4a907f1378ed8b22e6
-T
-$app/src/main/res/layout/add_todo.xml,e\d\ed4adc0fcfdb105e849c3447c30f52e3dd42d7ff
