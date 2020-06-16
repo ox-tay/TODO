@@ -5,16 +5,13 @@ import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 
-class BindingAdapterHelper {
-    companion object {
-        @BindingAdapter("strike")
-        @JvmStatic
-        fun setStrike(view: TextView, line: Int) {
-            if (line != 0)
-                view.paintFlags = STRIKE_THRU_TEXT_FLAG
-            else
-                view.paintFlags =  ANTI_ALIAS_FLAG
-
-        }
+object BindingAdapterHelper {
+    @BindingAdapter("strike")
+    @JvmStatic
+    fun setStrike(view: TextView, line: Int) {
+        if (line != 0)
+            view.paintFlags = STRIKE_THRU_TEXT_FLAG
+        else
+            view.paintFlags = ANTI_ALIAS_FLAG
     }
 }

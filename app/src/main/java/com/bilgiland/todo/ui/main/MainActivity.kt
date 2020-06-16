@@ -1,19 +1,18 @@
 package com.bilgiland.todo.ui.main
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bilgiland.todo.R
 import com.bilgiland.todo.data.model.TodoModel
+import com.bilgiland.todo.ui.bases.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.generic.instance
 
-class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
+class MainActivity : BaseActivity(), KodeinAware, AdapterListener {
 
     //use kodein for DI
     override val kodein by kodein()
@@ -23,34 +22,44 @@ class MainActivity : AppCompatActivity(), KodeinAware, AdapterListener {
 
     private lateinit var viewModel: MainViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-
-        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
-
+    override fun restInti() {
         intiUi()
         manageClick()
     }
+
+    override fun setViewModel() {
+        viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
+    }
+
+    override fun getLayout(): Int = R.layout.activity_main
 
     /**
      * manage click on view
      */
     private fun manageClick() {
-        // add new task
         fab_add.setOnClickListener {
-            clearFocusFromSearch()
-            AddDialog(this, object : AddTodoListener {
-                override fun onAddButtonClicked(name: String) {
-                    viewModel.insert(TodoModel(name, 0))
-                }
-            }).show()
+            fabClicked()
         }
 
         //delete all tasks
         img_delete_all.setOnClickListener {
-            viewModel.deleteAll()
+            deleteAllClicked()
         }
+
+    }
+
+    private fun deleteAllClicked() {
+        viewModel.deleteAll()
+    }
+
+    // add new task
+    private fun fabClicked() {
+        clearFocusFromSearch()
+        AddDialog(this, object : AddTodoListener {
+            override fun onAddButtonClicked(name: String) {
+                viewModel.insert(TodoModel(name, 0))
+            }
+        }).show()
     }
 
     // clear focus from search bar
