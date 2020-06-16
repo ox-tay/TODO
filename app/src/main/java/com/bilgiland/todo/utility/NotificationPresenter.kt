@@ -16,7 +16,7 @@ object NotificationPresenter {
         view.setOnLongClickListener {
 
             //get context from view
-            val context = it.context
+            val context = it.context.applicationContext
 
 
             val remoteView = RemoteViews(context.packageName, R.layout.notification_layout)
