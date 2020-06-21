@@ -6,7 +6,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.databinding.BindingAdapter
 import com.bilgiland.todo.R
-import com.bilgiland.todo.utility.ConstValue.Companion.CHANNEL_ID
+import com.bilgiland.todo.utility.ConstValue.CHANNEL_ID
 
 
 object NotificationPresenter {

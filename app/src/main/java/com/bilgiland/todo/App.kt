@@ -7,7 +7,7 @@ import android.os.Build
 import com.bilgiland.todo.data.db.TodoDb
 import com.bilgiland.todo.data.repository.TodoRepo
 import com.bilgiland.todo.ui.main.*
-import com.bilgiland.todo.utility.ConstValue.Companion.CHANNEL_ID
+import com.bilgiland.todo.utility.ConstValue.CHANNEL_ID
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.androidXModule

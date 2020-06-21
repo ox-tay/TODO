@@ -1,5 +1,10 @@
 package com.bilgiland.todo.ui.main
 
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -7,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bilgiland.todo.R
 import com.bilgiland.todo.data.model.TodoModel
 import com.bilgiland.todo.ui.bases.BaseActivity
+import com.bilgiland.todo.utility.ConstValue.CHANNEL_ID
 import kotlinx.android.synthetic.main.activity_main.*
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
