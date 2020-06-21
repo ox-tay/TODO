@@ -31,9 +31,7 @@ class AddDialog(context: Context, private var addDialog: AddTodoListener) :
 
     }
 
-    /**
-     * add clicked
-     */
+    // add clicked
     private fun addClicked() {
         val todo: String = edt_todo.text.toString()
 

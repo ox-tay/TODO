@@ -10,6 +10,9 @@ import com.bilgiland.todo.R
 import com.bilgiland.todo.data.model.TodoModel
 import com.bilgiland.todo.databinding.TodoItemBinding
 
+/***
+ * adapter of todos recyclerview
+ */
 class TodoAdapter(private val adapterListener: AdapterListener) :
     ListAdapter<TodoModel, TodoAdapter.TodoViewHolder>(TodoCallBack()) {
 
@@ -24,6 +27,9 @@ class TodoAdapter(private val adapterListener: AdapterListener) :
 
     }
 
+    /**
+     * view holder of todos
+     */
     inner class TodoViewHolder(val todoItemBinding: TodoItemBinding) :
         RecyclerView.ViewHolder(todoItemBinding.root)
 

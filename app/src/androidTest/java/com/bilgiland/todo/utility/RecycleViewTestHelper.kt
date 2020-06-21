@@ -10,6 +10,9 @@ import org.hamcrest.Matchers
 import org.hamcrest.TypeSafeMatcher
 
 
+/**
+ * help to test recyclerview
+ */
 object RecycleViewTestHelper {
     fun getCountFromRecyclerView(RecyclerViewId: Int): Int {
         val count = intArrayOf(0)

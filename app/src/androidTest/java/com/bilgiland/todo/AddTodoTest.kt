@@ -34,6 +34,7 @@ class AddTodoTest {
     var mMainActivityTestRule: ActivityTestRule<MainActivity> =
         ActivityTestRule(MainActivity::class.java)
 
+    // get activity
     @Before
     fun init() {
         activity = mMainActivityTestRule.activity

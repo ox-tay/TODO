@@ -5,6 +5,9 @@ import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 
+/**
+ * paint line on job or remove it in done clicked
+ */
 object BindingAdapterHelper {
     @BindingAdapter("strike")
     @JvmStatic

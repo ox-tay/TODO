@@ -93,16 +93,10 @@ class MainActivity : BaseActivity(), KodeinAware, AdapterListener {
 
     }
 
-    /**
-     * job deleted
-     */
     override fun onDeleteClicked(todoModel: TodoModel) {
         viewModel.delete(todoModel)
     }
 
-    /**
-     * job done
-     */
     override fun onDoneClicked(id: Int, done: Int) {
         viewModel.done(id, done)
     }
