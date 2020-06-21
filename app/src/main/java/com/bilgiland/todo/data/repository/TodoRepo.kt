@@ -3,6 +3,9 @@ package com.bilgiland.todo.data.repository
 import com.bilgiland.todo.data.db.TodoDb
 import com.bilgiland.todo.data.model.TodoModel
 
+/**
+ * repository of tasks
+ */
 class TodoRepo(private val db: TodoDb) {
 
     // delete specific model

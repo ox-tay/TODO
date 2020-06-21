@@ -8,7 +8,9 @@ import androidx.databinding.BindingAdapter
 import com.bilgiland.todo.R
 import com.bilgiland.todo.utility.ConstValue.CHANNEL_ID
 
-
+/**
+ * show notification by click onn task
+ */
 object NotificationPresenter {
     @JvmStatic
     @BindingAdapter("app:longClick")

@@ -3,6 +3,9 @@ package com.bilgiland.todo.ui.bases
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
+/**
+ * use it as base class in activity
+ */
 abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

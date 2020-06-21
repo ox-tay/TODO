@@ -10,6 +10,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * Main view model use it for transformation data as MVVM arch
+ */
 class MainViewModel(
     private var repository: TodoRepo
 ) : ViewModel() {
@@ -20,31 +23,50 @@ class MainViewModel(
         _searchStringLiveData.value = ""
     }
 
+    /**
+     * get all tasks
+     * if search not active return all if not return filter list
+     */
     fun getAll(): LiveData<List<TodoModel>> = Transformations.switchMap(_searchStringLiveData) {
-        if(_searchStringLiveData.value!="")
+        if (_searchStringLiveData.value != "")
             repository.getSearchTodo(it)
         else
             repository.getAllTodo()
 
     }
 
-        fun insert(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
-            repository.insert(todoModel)
-        }
-
-        fun delete(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
-            repository.deleteTodo(todoModel)
-        }
-
-        fun done(id: Int, done: Int) = CoroutineScope(Dispatchers.Main).launch {
-            repository.done(id, done)
-        }
-
-        fun deleteAll() = CoroutineScope(Dispatchers.Main).launch {
-            repository.deleteAll()
-        }
-
-        fun searchTextChanged(name: String) {
-            _searchStringLiveData.value = name
-        }
+    /**
+     * insert new task
+     */
+    fun insert(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
+        repository.insert(todoModel)
     }
+
+    /**
+     * delete task
+     */
+    fun delete(todoModel: TodoModel) = CoroutineScope(Dispatchers.Main).launch {
+        repository.deleteTodo(todoModel)
+    }
+
+    /**
+     * done or open task
+     */
+    fun done(id: Int, done: Int) = CoroutineScope(Dispatchers.Main).launch {
+        repository.done(id, done)
+    }
+
+    /**
+     * delete all tasks
+     */
+    fun deleteAll() = CoroutineScope(Dispatchers.Main).launch {
+        repository.deleteAll()
+    }
+
+    /**
+     * put search text on mutable live data
+     */
+    fun searchTextChanged(name: String) {
+        _searchStringLiveData.value = name
+    }
+}

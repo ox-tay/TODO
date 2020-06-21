@@ -11,11 +11,14 @@ import com.bilgiland.todo.data.model.TodoModel
 import com.bilgiland.todo.databinding.TodoItemBinding
 
 /***
- * adapter of todos recyclerview
+ * adapter of tasks recyclerview
  */
 class TodoAdapter(private val adapterListener: AdapterListener) :
     ListAdapter<TodoModel, TodoAdapter.TodoViewHolder>(TodoCallBack()) {
 
+    /**
+     * use it for determine difference
+     */
     class TodoCallBack : DiffUtil.ItemCallback<TodoModel>() {
         override fun areItemsTheSame(oldItem: TodoModel, newItem: TodoModel): Boolean {
             return oldItem.id == newItem.id

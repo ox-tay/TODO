@@ -2,6 +2,9 @@ package com.bilgiland.todo.ui.main
 
 import com.bilgiland.todo.data.model.TodoModel
 
+/**
+ * listener for dialog
+ */
 interface AdapterListener{
 
     /**

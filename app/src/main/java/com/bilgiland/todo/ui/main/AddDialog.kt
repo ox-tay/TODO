@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatDialog
 import com.bilgiland.todo.R
 import kotlinx.android.synthetic.main.add_todo.*
 
-
+/**
+ * show dialog for add new task
+ */
 class AddDialog(context: Context, private var addDialog: AddTodoListener) :
     AppCompatDialog(context) {
     override fun onCreate(savedInstanceState: Bundle?) {

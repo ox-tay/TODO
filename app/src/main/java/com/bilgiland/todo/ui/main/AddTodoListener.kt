@@ -1,8 +1,11 @@
 package com.bilgiland.todo.ui.main
 
 /**
- * use for transfer data from dialog t main activity
+ * manage add new task
  */
 interface AddTodoListener {
+    /**
+     * add new task
+     */
     fun onAddButtonClicked(name: String)
 }
